@@ -24,8 +24,8 @@ namespace Fuzzy.Parsing
 
         public override dynamic VisitFile([NotNull] FuzzyParser.FileContext context)
         {
-            tnorm = GetFunction(context.ID(1).GetText().ToLower());
-            tconorm = GetFunction(context.ID(0).GetText().ToLower());
+            tnorm   = GetFunction(context.ID(1).GetText().ToLower());
+            tconorm = GetFunction(context.ID(2).GetText().ToLower());
 
             string defuzzy = null;
             if (!(context.ID(3) is null))
@@ -54,7 +54,7 @@ namespace Fuzzy.Parsing
         {
             var variable = context.ID(0).GetText();
             var func = context.ID(1).GetText();
-            return funcs[func](values[variable]);
+            return funcs[func].Evaluate(double.Parse(values[variable].ToString()));
         }
 
         public override dynamic VisitLParens([NotNull] FuzzyParser.LParensContext context)

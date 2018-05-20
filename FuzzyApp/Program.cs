@@ -62,9 +62,26 @@ namespace FuzzyApp
 
             Dictionary<string, Function> funcs = new Dictionary<string, Function>();
             foreach (JProperty f in data["functions"])
-            {
                 funcs.Add(f.Name, GetFunction(f.Values().First(), f.Values().Skip(1)));
+
+
+            // Evaluate rules expressions
+            var evaluator = new Evaluator(values, funcs);
+            dynamic result = evaluator.Visit(tree);
+
+            (string model, string defuzzy, IEnumerable<dynamic> output) = (result.Item1, result.Item2, result.Item3);
+
+            Console.WriteLine(model);
+            Console.WriteLine(defuzzy);
+
+            foreach (var item in output)
+            {
+                Console.WriteLine(item.GetType());
             }
+
+            
+
+
 
         }
 
@@ -77,27 +94,34 @@ namespace FuzzyApp
 
             if(fname == "Trapezoid")
             {
+                while (p.Count() < 4) p.Add("");
                 double? a = null; if (p[0] != "") a = double.Parse(p[0]);
-                double? b = null; if (p[0] != "") b = double.Parse(p[1]);
-                double? c = null; if (p[0] != "") c = double.Parse(p[2]);
-                double? d = null; if (p[0] != "") d = double.Parse(p[3]);
+                double? b = null; if (p[1] != "") b = double.Parse(p[1]);
+                double? c = null; if (p[2] != "") c = double.Parse(p[2]);
+                double? d = null; if (p[3] != "") d = double.Parse(p[3]);
                 return new Trapezoid(a, b, c, d);
             }
             if(fname == "Triangle")
             {
-
+                double a = double.Parse(p[0]);
+                double b = double.Parse(p[1]);
+                double c = double.Parse(p[2]);
+                return new Triangle(a, b, c);
             }
             if(fname == "Sigmoid")
             {
-
+                double k = double.Parse(p[0]);
+                double x0 = double.Parse(p[1]);
+                return new Sigmoid(k, x0);
             }
             if(fname == "Gaussian")
             {
-
+                double b = double.Parse(p[0]);
+                double c = double.Parse(p[1]);
+                return new Gaussian(b, c);
             }
 
             throw new NotSupportedException($"The functions {fname} not exists");
-
         }
     }
 }

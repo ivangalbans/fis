@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Fuzzy.Function
 {
+    /// <summary>
+    /// Represents the composition of several functions
+    /// </summary>
     public class Compose
     {
     }

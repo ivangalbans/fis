@@ -35,7 +35,7 @@ namespace Fuzzy.Function
             {
                 // Descent (b->c if triangle, c->d if trapezoid)
                 (double? cc, double? dd) = !(d is null) ? (c, d) : (b, c);
-                return (double)(x - d) / (double)(c - d);  // (b, c) or (c, d)
+                return (double)(x - dd) / (double)(cc - dd);  // (b, c) or (c, d)
             }
 
             return 0; // [c, inf) or [d, inf)

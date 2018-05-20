@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8D69120E-854F-463F-8ACD-5006BE91301E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fuzzy</RootNamespace>
-    <AssemblyName>Fuzzy</AssemblyName>
+    <ProjectGuid>{2E669778-C1BE-4272-9731-061A0A0ABFE3}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FuzzyApp</RootNamespace>
+    <AssemblyName>FuzzyApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr4.Runtime.Standard">
-      <HintPath>..\packages\Antlr4.Runtime.Standard.4.7.1\lib\net35\Antlr4.Runtime.Standard.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,19 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parsing\Evaluator.cs" />
-    <Compile Include="Parsing\FuzzyBaseVisitor.cs" />
-    <Compile Include="Parsing\FuzzyLexer.cs" />
-    <Compile Include="Parsing\FuzzyParser.cs" />
-    <Compile Include="Parsing\FuzzyVisitor.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Parsing\Fuzzy.g4" />
-    <None Include="Parsing\Fuzzy.interp" />
-    <None Include="Parsing\Fuzzy.tokens" />
-    <None Include="Parsing\FuzzyLexer.interp" />
-    <None Include="Parsing\FuzzyLexer.tokens" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fuzzy\Fuzzy.csproj">
+      <Project>{8d69120e-854f-463f-8acd-5006be91301e}</Project>
+      <Name>Fuzzy</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

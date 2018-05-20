@@ -9,7 +9,7 @@ namespace Fuzzy.Function
     public class Trapezoid : Function
     {
         protected double? a, b, c, d;
-        public Trapezoid(double start, double end, double? a, double? b, double? c = null, double? d = null) : base(start, end)
+        public Trapezoid(double? a, double? b, double? c = null, double? d = null) : base(a, !(d is null) ? d : !(c is null) ? c : b)
         {
             this.a = a;
             this.b = b;
@@ -40,6 +40,5 @@ namespace Fuzzy.Function
 
             return 0; // [c, inf) or [d, inf)
         }
-
     }
 }

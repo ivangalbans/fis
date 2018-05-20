@@ -43,11 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Function\Base\Function.cs" />
+    <Compile Include="Function\Compose.cs" />
+    <Compile Include="Function\Gaussian.cs" />
+    <Compile Include="Function\Sigmoid.cs" />
+    <Compile Include="Function\Trapezoid.cs" />
+    <Compile Include="Function\Triangle.cs" />
     <Compile Include="Parsing\Evaluator.cs" />
     <Compile Include="Parsing\FuzzyBaseVisitor.cs" />
     <Compile Include="Parsing\FuzzyLexer.cs" />
     <Compile Include="Parsing\FuzzyParser.cs" />
     <Compile Include="Parsing\FuzzyVisitor.cs" />
+    <Compile Include="Parsing\ErrorListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

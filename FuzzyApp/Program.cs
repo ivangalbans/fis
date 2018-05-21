@@ -25,9 +25,19 @@ namespace FuzzyApp
 
         static void Main(string[] args)
         {
-            string argData = "tips.json"; // args[0];
-            string argRules = "tips.fuz"; // args[1];
-            double argStepSize = 0.1; // args[2]
+            if(args.Count() != 2 && args.Count() != 3)
+            {
+                Console.WriteLine("Incorrec parameters: <data>.json <rules>.fis [<step_size>]");
+                Environment.ExitCode = 1;
+                return;
+            }
+
+            string argData =  args[0];
+            string argRules =  args[1];
+
+            double argStepSize = 0.1;
+            if (args.Count() == 3)
+                argStepSize = double.Parse(args[2]);
 
             // Load from files
             var rules = new AntlrFileStream(argRules);
@@ -64,16 +74,6 @@ namespace FuzzyApp
             var funcs = new Dictionary<string, FunctionBase>();
             foreach (JProperty f in data["functions"])
                 funcs.Add(f.Name, GetFunction(f.Values().First(), f.Values().Skip(1)));
-
-            //foreach (var item in funcs)
-            //{
-            //    Console.Write(item.Key + " ");
-            //    Console.Write(item.Value + " ");
-            //    Console.WriteLine($"({item.Value._start}, {item.Value._end})");
-            //    Console.WriteLine();
-            //}
-
-            //return;
 
             // Evaluate rules expressions
             var evaluator = new Evaluator(values, funcs);

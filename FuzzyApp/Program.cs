@@ -65,6 +65,8 @@ namespace FuzzyApp
                 funcs.Add(f.Name, GetFunction(f.Values().First(), f.Values().Skip(1)));
 
 
+            Console.WriteLine(1e-6);
+
             // Evaluate rules expressions
             var evaluator = new Evaluator(values, funcs);
             dynamic result = evaluator.Visit(tree);

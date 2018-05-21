@@ -50,5 +50,34 @@ namespace Fuzzy.Defuzzifiers
             }
             throw new Exception("There is some error");
         }
+
+        /// <summary>
+        /// Determine the point which corresponds with the mean of the function's maximums
+        /// </summary>
+        /// <param name="func">Function object</param>
+        /// <param name="step">Distance between domain's values</param>
+        /// <returns>Numeric value representing the domain's value which approximately corresponds to the mean of maximums</returns>
+        public static double MeanMax(FunctionBase function, double step = 0.1)
+        {
+            var points = function.Points(step);
+            var maximums = new List<double>();
+            double k = 0;
+
+            foreach(var (x, y) in points)
+            {
+                if (Math.Abs(y - k) < 1e-6)
+                {
+                    maximums.Add(x);
+                }
+                else if(y > k)
+                {
+                    k = y;
+                    maximums.Clear();
+                    maximums.Add(x);
+                }
+            }
+
+            return maximums.Sum() / maximums.Count();
+        }
     }
 }

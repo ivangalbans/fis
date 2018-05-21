@@ -11,13 +11,13 @@ namespace Fuzzy.Function
     /// </summary>
     public class Compose : FunctionBase
     {
-        List<(object w, FunctionBase function)> aggr;
+        List<(double w, FunctionBase function)> aggr;
 
         /// <summary>
         /// Initialize a new composed function
         /// </summary>
         /// <param name="aggr">List of tuples (trunc, function) where trunc is an upper limit to func's image</param>
-        public Compose(List<(object trunc, FunctionBase function)> aggr) :
+        public Compose(List<(double trunc, FunctionBase function)> aggr) :
             base(aggr.Aggregate((x, y) => (x.function._start < y.function._start) ? x : y).function._start,
                  aggr.Aggregate((x, y) => (x.function._start > y.function._start) ? x : y).function._end)
         {

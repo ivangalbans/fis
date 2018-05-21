@@ -25,7 +25,6 @@ namespace FuzzyApp
 
         static void Main(string[] args)
         {
-
             string argData = "tips.json"; // args[0];
             string argRules = "tips.fuz"; // args[1];
             double argStepSize = 0.1; // args[2]
@@ -75,12 +74,35 @@ namespace FuzzyApp
 
             model = model.ToLower();
 
-            var rulesOutput = new List<(object, string, string)>();
+            var rulesOutput = new List<(double, string, string)>();
             foreach (var item in output)
-                rulesOutput.Add(item);
+            {
+                double tmp = double.Parse(item.Item1.ToString());
+                rulesOutput.Add((tmp, item.Item2, item.Item3));
+            }
 
             if (model == "mamdani")
+            {
                 Print(ModelMethod.Mamdani(rulesOutput, GetDefuzzifier(defuzzy.ToLower()), funcs, argStepSize));
+            }
+            else if(model == "sugeno")
+            {
+                var rulesOutputSugeno = new List<(double, string, double)>();
+                foreach (var item in output)
+                {
+                    double tmp = double.Parse(item.Item3.ToString());
+                    rulesOutputSugeno.Add((item.Item1, item.Item2, tmp));
+                }
+                Print(ModelMethod.Sugeno(rulesOutputSugeno));
+            }
+            else if(model == "tsukamoto")
+            {
+                Print(ModelMethod.Tsukamoto(rulesOutput, funcs, argStepSize));
+            }
+            else
+            {
+                throw new Exception($"The model {model} is not exists");
+            }
 
 
         }

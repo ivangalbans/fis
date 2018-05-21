@@ -11,7 +11,7 @@ namespace Fuzzy.Function
     /// </summary>
     public abstract class FunctionBase
     {
-        protected double? _start, _end;
+        public double? _start, _end;
 
         /// <summary>
         /// Initialize a new function object

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using Fuzzy.Function;
 
-namespace Fuzzy.Defuzzifiers
+namespace Fuzzy.Defuzzifier
 {
-    public static class Defuzzifiers
+    public static class Defuzzifier
     {
         /// <summary>
         /// Determine the center of gravity (centroid) of a function's curve

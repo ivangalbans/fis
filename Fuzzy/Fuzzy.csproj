@@ -43,13 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Defuzzifiers\Defuzzifiers.cs" />
-    <Compile Include="Function\Base\Function.cs" />
+    <Compile Include="Defuzzifier\Defuzzifier.cs" />
+    <Compile Include="Function\Base\FunctionBase.cs" />
     <Compile Include="Function\Compose.cs" />
     <Compile Include="Function\Gaussian.cs" />
     <Compile Include="Function\Sigmoid.cs" />
     <Compile Include="Function\Trapezoid.cs" />
     <Compile Include="Function\Triangle.cs" />
+    <Compile Include="Model\ModelMethod.cs" />
     <Compile Include="Parsing\Evaluator.cs" />
     <Compile Include="Parsing\FuzzyBaseVisitor.cs" />
     <Compile Include="Parsing\FuzzyLexer.cs" />
@@ -65,5 +66,6 @@
     <None Include="Parsing\FuzzyLexer.interp" />
     <None Include="Parsing\FuzzyLexer.tokens" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

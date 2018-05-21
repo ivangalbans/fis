@@ -11,6 +11,8 @@ using Antlr4.Runtime.Tree;
 
 using Fuzzy.Function;
 using Fuzzy.Parsing;
+using Fuzzy.Defuzzifier;
+using Fuzzy.Model;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -65,8 +67,6 @@ namespace FuzzyApp
                 funcs.Add(f.Name, GetFunction(f.Values().First(), f.Values().Skip(1)));
 
 
-            Console.WriteLine(1e-6);
-
             // Evaluate rules expressions
             var evaluator = new Evaluator(values, funcs);
             dynamic result = evaluator.Visit(tree);
@@ -75,24 +75,28 @@ namespace FuzzyApp
 
             model = model.ToLower();
 
-            if(model == "mamdani")
-            {
+            var rulesOutput = new List<(object, string, string)>();
+            foreach (var item in output)
+                rulesOutput.Add(item);
 
-            }
-
-            //foreach (var item in output)
-            //{
-            //    Console.WriteLine(item.GetType());
-            //    Console.WriteLine(item.Item1);
-            //    Console.WriteLine(item.Item2);
-            //    Console.WriteLine(item.Item3);
-            //    Console.WriteLine();
-            //}
-
-            
+            if (model == "mamdani")
+                Print(ModelMethod.Mamdani(rulesOutput, GetDefuzzifier(defuzzy.ToLower()), funcs, argStepSize));
 
 
+        }
 
+        private static void Print(Dictionary<string, double> dictionary)
+        {
+            foreach (var item in dictionary)
+                Console.WriteLine(item.Key + " " + Math.Round(item.Value, 3));
+        }
+
+        private static Func<FunctionBase, double, double> GetDefuzzifier(string name)
+        {
+            if (name == "centroid") return Defuzzifier.Centroid;
+            if (name == "bisecter") return Defuzzifier.Bisecter;
+            if (name == "mean_max") return Defuzzifier.MeanMax;
+            throw new NotSupportedException($"The defuzzyfier {name} not exist");
         }
 
         private static FunctionBase GetFunction(JToken name, IEnumerable<JToken> parameters)

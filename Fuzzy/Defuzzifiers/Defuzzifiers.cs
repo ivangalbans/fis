@@ -13,12 +13,12 @@ namespace Fuzzy.Defuzzifiers
         /// <summary>
         /// Determine the center of gravity (centroid) of a function's curve
         /// </summary>
-        /// <param name="func">Function object</param>
+        /// <param name="function">Function object</param>
         /// <param name="step">Distance between domain's values</param>
         /// <returns>Numeric value representing the domain's value which approximately corresponds to the centroid</returns>
-        public static double Centroid(FunctionBase func, double step = 0.1)
+        public static double Centroid(FunctionBase function, double step = 0.1)
         {
-            var points = func.Points();
+            var points = function.Points(step);
             (double num, double den) = (0, 0);
 
             foreach (var (x, y) in points)
@@ -28,6 +28,27 @@ namespace Fuzzy.Defuzzifiers
             }
 
             return num / den;
+        }
+
+        /// <summary>
+        /// Determine the center of area (splits the curve in two pices with the same area) (bisecter) of a function
+        /// </summary>
+        /// <param name="function">Function object</param>
+        /// <param name="step">Distance between domain's values</param>
+        /// <returns>Numeric value representing the domain's value which approximately corresponds to the bisecter</returns>
+        public static double Bisecter(FunctionBase function, double step = 0.1)
+        {
+            var points = function.Points(step);
+            double area = points.Select((x, y) => y).Sum();
+
+            double current = 0.0;
+            foreach(var (x, y) in points)
+            {
+                current += y;
+                if (current >= area / 2.0)
+                    return x;
+            }
+            throw new Exception("There is some error");
         }
     }
 }

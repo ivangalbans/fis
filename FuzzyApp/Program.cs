@@ -60,7 +60,7 @@ namespace FuzzyApp
             // Retieve dictionaries from data JSON file
             var values = data["variables"];
 
-            Dictionary<string, Function> funcs = new Dictionary<string, Function>();
+            Dictionary<string, FunctionBase> funcs = new Dictionary<string, FunctionBase>();
             foreach (JProperty f in data["functions"])
                 funcs.Add(f.Name, GetFunction(f.Values().First(), f.Values().Skip(1)));
 
@@ -93,7 +93,7 @@ namespace FuzzyApp
 
         }
 
-        private static Function GetFunction(JToken name, IEnumerable<JToken> parameters)
+        private static FunctionBase GetFunction(JToken name, IEnumerable<JToken> parameters)
         {
             string fname = name.ToString();
             List<string> p = new List<string>();

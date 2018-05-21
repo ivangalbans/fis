@@ -18,8 +18,8 @@ namespace Fuzzy.Function
         /// </summary>
         /// <param name="aggr">List of tuples (trunc, function) where trunc is an upper limit to func's image</param>
         public Compose(List<(double trunc, FunctionBase function)> aggr) :
-            base(aggr.Aggregate((x, y) => (x.function._start < y.function._start) ? x : y).function._start,
-                 aggr.Aggregate((x, y) => (x.function._start > y.function._start) ? x : y).function._end)
+            base(aggr.Aggregate(aggr[0], (x, y) => (x.function._start < y.function._start) ? x : y).function._start,
+                 aggr.Aggregate(aggr[0], (x, y) => (x.function._end > y.function._end) ? x : y).function._end)
         {
             this.aggr = aggr;
         }

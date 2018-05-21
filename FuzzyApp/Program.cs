@@ -61,10 +61,19 @@ namespace FuzzyApp
             // Retieve dictionaries from data JSON file
             var values = data["variables"];
 
-            Dictionary<string, FunctionBase> funcs = new Dictionary<string, FunctionBase>();
+            var funcs = new Dictionary<string, FunctionBase>();
             foreach (JProperty f in data["functions"])
                 funcs.Add(f.Name, GetFunction(f.Values().First(), f.Values().Skip(1)));
 
+            //foreach (var item in funcs)
+            //{
+            //    Console.Write(item.Key + " ");
+            //    Console.Write(item.Value + " ");
+            //    Console.WriteLine($"({item.Value._start}, {item.Value._end})");
+            //    Console.WriteLine();
+            //}
+
+            //return;
 
             // Evaluate rules expressions
             var evaluator = new Evaluator(values, funcs);
@@ -81,6 +90,7 @@ namespace FuzzyApp
                 rulesOutput.Add((tmp, item.Item2, item.Item3));
             }
 
+            
             if (model == "mamdani")
             {
                 Print(ModelMethod.Mamdani(rulesOutput, GetDefuzzifier(defuzzy.ToLower()), funcs, argStepSize));
@@ -103,7 +113,6 @@ namespace FuzzyApp
             {
                 throw new Exception($"The model {model} is not exists");
             }
-
 
         }
 

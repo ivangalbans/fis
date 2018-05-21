@@ -15,7 +15,6 @@ namespace Fuzzy.Function
             this.b = b;
             this.c = c;
             this.d = d;
-
         }
 
         public override double Evaluate(double x)

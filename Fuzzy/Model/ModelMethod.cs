@@ -29,7 +29,7 @@ namespace Fuzzy.Model
                 // # List of tuples (trunc, function) which corresponds to variable 'var_name'
                 var aggrFunc = item.Select(x => (x.w, function[x.linguisticVal]));
                 var compose = new Compose(aggrFunc.ToList());
-
+                
                 // Defuzzify and store result corresponding to variable 'var_name'
                 result.Add(item.Key, defuzzy(compose, step));
             }

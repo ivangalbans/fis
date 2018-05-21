@@ -30,7 +30,7 @@ namespace Fuzzy.Function
         /// <param name="step">Distance between points in the discretized function domain</param>
         public IEnumerable<(double x, double y)> Points(double step = 0.1)
         {
-            var x = (double)_start;
+            var x = _start ?? 0.0;
             while (x < _end)
             {
                 yield return (x, Evaluate(x));

@@ -79,7 +79,7 @@ namespace Fuzzy.Parsing
 
         public override dynamic VisitAVar([NotNull] FuzzyParser.AVarContext context)
         {
-            return values[context.ID().GetText()];
+            return double.Parse(values[context.ID().GetText()]);
         }
 
         public override dynamic VisitANumber([NotNull] FuzzyParser.ANumberContext context)

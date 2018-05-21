@@ -9,7 +9,7 @@ namespace Fuzzy.Function
     /// <summary>
     /// Generic function representation
     /// </summary>
-    public abstract class Function
+    public abstract class FunctionBase
     {
         protected double? _start, _end;
 
@@ -18,7 +18,7 @@ namespace Fuzzy.Function
         /// </summary>
         /// <param name="start">First 'relevant' value in the function's domain</param>
         /// <param name="end">Last 'relevant' value in the function's domain</param>
-        public Function(double? start, double? end)
+        public FunctionBase(double? start, double? end)
         {
             _start = start;
             _end = end;

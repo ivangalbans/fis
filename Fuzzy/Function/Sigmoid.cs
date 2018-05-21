@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fuzzy.Function
 {
-    public class Sigmoid : Function
+    public class Sigmoid : FunctionBase
     {
         double k, x0;
         public Sigmoid(double k, double x0) : base(-Math.Abs(6.0 / k), Math.Abs(6.0 / k)) // Wiki ;)

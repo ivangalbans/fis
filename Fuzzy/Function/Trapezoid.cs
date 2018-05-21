@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fuzzy.Function
 {
-    public class Trapezoid : Function
+    public class Trapezoid : FunctionBase
     {
         protected double? a, b, c, d;
         public Trapezoid(double? a, double? b, double? c = null, double? d = null) : base(a, !(d is null) ? d : !(c is null) ? c : b)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fuzzy.Function
 {
-    public class Gaussian : Function
+    public class Gaussian : FunctionBase
     {
         double b, c;
         public Gaussian(double b, double c) : base(-Math.Abs(6.0 * c), -Math.Abs(6.0 * c))

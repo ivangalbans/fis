@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Defuzzifiers\Defuzzifiers.cs" />
     <Compile Include="Function\Base\Function.cs" />
     <Compile Include="Function\Compose.cs" />
     <Compile Include="Function\Gaussian.cs" />

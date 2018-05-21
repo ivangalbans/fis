@@ -71,13 +71,21 @@ namespace FuzzyApp
 
             (string model, string defuzzy, IEnumerable<dynamic> output) = (result.Item1, result.Item2, result.Item3);
 
-            Console.WriteLine(model);
-            Console.WriteLine(defuzzy);
+            model = model.ToLower();
 
-            foreach (var item in output)
+            if(model == "mamdani")
             {
-                Console.WriteLine(item.GetType());
+
             }
+
+            //foreach (var item in output)
+            //{
+            //    Console.WriteLine(item.GetType());
+            //    Console.WriteLine(item.Item1);
+            //    Console.WriteLine(item.Item2);
+            //    Console.WriteLine(item.Item3);
+            //    Console.WriteLine();
+            //}
 
             
 

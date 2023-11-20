@@ -84,4 +84,4 @@ Author
 
 Iván Galbán Smith <ivan.galban.smith@gmail.com>
 
-  Faculty of Mathematics and Computer Science, University of Havana
+4th year Computer Science student, University of Havana
